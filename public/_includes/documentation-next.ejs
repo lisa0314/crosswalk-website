@@ -5,7 +5,7 @@
     <% var item = subpages._data[slug] %>
     <% if(slug === current.source) { %>
       <% var next = true %>
-    <% } else if(next === true) { %>
+    <% } else if(next === true && item.language === "en") { %>
       <% next = false %>
       <a href="/documentation/<%= current.path[1] %>/<%= slug %>.html" class="article-promo well">
         <em>What’s next?</em>

@@ -2,7 +2,7 @@
 
   <% if(current.path.length === 1 && current.source === 'index_zh') { %>
 <nav class="nav">
-  <a href="/" class="nav-logo logo">
+  <a href="/index_zh" class="nav-logo logo">
     <img src="/assets/identity/crosswalkproject-logo-horizontal-light.png" class="logo-image">
   </a>
   <ul class="nav-list">
@@ -24,11 +24,6 @@
     <li class="nav-item">
       <a href="/documentation/getting_started_zh.html" class="nav-link button button--tertiary" id="getting-started-nav">开始</a>
     </li>
-    <li class="nav-item">
-       <select name="language" id="select_id" onchange="myFunction()">
-           <option value="English">English</option>
-           <option value="Chinese" selected="selected">Chinese</option>
-        </select>>
   </ul>
 </nav>
 
@@ -36,7 +31,7 @@
      } else { %>
 
   <div class="doc-logo-div">
-     <a href="/" class="doc-logo-link">
+     <a href="/index_zh" class="doc-logo-link">
        <img src="/assets/identity/crosswalkproject-logo-horizontal-dark.png" class="doc-logo-img">
      </a>
   </div>
@@ -74,8 +69,14 @@
 function myFunction() {
    var selectElement = document.getElementById('select_id');
    var selected = selectElement.value;
-  
+   var cur_url = window.location.href;
    var fileName = "<%= current.source%>";
+   if(fileName != 'index' && fileName != 'index_zh')
+   {
+      var url_list = cur_url.split('/');
+      fileName = url_list[url_list.length - 1];
+   }
+
    var flag = fileName.lastIndexOf("_zh");
    if(selected == "English")
    {

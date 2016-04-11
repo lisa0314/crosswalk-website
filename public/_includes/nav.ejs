@@ -1,5 +1,4 @@
 
-
   <% if(current.path.length === 1 && current.source === 'index') { %>
 <nav class="nav">
   <a href="/" class="nav-logo logo">
@@ -55,6 +54,54 @@
       <li class="doc-nav-item hide-on-small">
         <a href="/documentation/getting_started.html" class="doc-nav-link" style="border:1px solid #ec543b;padding:8px;color:#ec543b;" >get started</a>
       </li>
+      <li class="doc-nav-item">
+        <select name="language" id="select_id" onchange="myFunction()">
+           <option value="English" selected="selected">English</option>
+           <option value="Chinese">Chinese</option>
+        </select>
+      </li>
     </ul>
   </div>
   <% } %>
+
+<script>
+function myFunction() {
+   var selectElement = document.getElementById('select_id');
+   var selected = selectElement.value;
+   var cur_url = window.location.href; 
+   var fileName = "<%= current.source%>";
+   if(fileName != 'index' && fileName != 'index_zh')
+   {
+      var url_list = cur_url.split('/');
+      fileName = url_list[url_list.length - 1];
+   }
+   var flag = fileName.lastIndexOf("_zh");
+   if(selected == "English")
+   {
+     createCookie(LOCAL_LANG_COOKIE, "English");
+     if( flag > 0 )
+     {
+        newfileName = fileName.substring(0,flag) + fileName.substring(flag+3);
+        window.location.replace(newfileName);
+     }
+   }
+   else
+   {
+     createCookie(LOCAL_LANG_COOKIE, "Chinese");
+     if(flag <= 0 )
+     {
+        var tmp = fileName.split('.');
+        newfileName = tmp[0] + "_zh";
+        if( tmp.length > 1)
+        {
+           for( var i = 1; i < tmp.length; i++ )
+           {
+               newfileName = newfileName + "." +  tmp[i];
+           }
+        }
+        window.location.replace(newfileName);
+     }
+  } 
+}
+</script>
+

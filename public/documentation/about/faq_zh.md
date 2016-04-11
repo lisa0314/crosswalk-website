@@ -1,17 +1,4 @@
 # 常问问题
-<form action="test.php" method="post" id="form">
-<select name="language" onchange="myFunction()">
-<option value="English">English</option>
-<option value="Chinese" selected="selected">Chinese</option>
-</select>
-</form>
-
-<script>
-function myFunction() {
-   //document.getElementById('form').submit();
-   document.write("Success!");
-}
-</script>
 
 如果你有任何下文中没有提及的问题，可以通过crosswalk-help邮箱列表发布。或者可以通过#crosswalk IRC频道直接联系我们。详细信息请参见[社区页面](/documentation/community.html)。
 
